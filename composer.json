@@ -1,0 +1,25 @@
+{
+    "name": "phpzlc/admin",
+    "description": "",
+    "license": "proprietary",
+    "type": "library",
+    "keywords": [
+        "phpzlc", "symfony", "admin"
+    ],
+    "authors": [
+        {
+            "name": "jay_he",
+            "email": "hjjhanxing@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "PHPZlc\\Admin\\": [""]
+        }
+    },
+    "require": {
+        "php": "^7.2.5",
+        "phpmyadmin/sql-parser": "^5.0"
+    }
+}
