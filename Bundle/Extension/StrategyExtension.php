@@ -39,18 +39,32 @@ class StrategyExtension extends AbstractExtension
             new TwigFunction('admin_url_anchor', [$this->adminStrategy, 'getUrlAnchor']),
             new TwigFunction('admin_env', [$this->adminStrategy, 'getAdminEnv']),
             new TwigFunction('admin_menus', [$this->adminStrategy, 'getMenus']),
+            new TwigFunction('admin_top_menus', [$this->adminStrategy, 'getTopMenus']),
             new TwigFunction('admin_menu_model', [$this->adminStrategy, 'getMenuModel']),
             new TwigFunction('admin_login_lack_ground_img', [$this->adminStrategy, 'getLoginLackGroundImg']),
             new TwigFunction('admin_navigations', [$this->adminStrategy, 'getNavigations']),
-            new TwigFunction('admin_asset', [$this, 'asset'])
+            new TwigFunction('admin_asset', [$this, 'asset']),
+            new TwigFunction('admin_clear_cache_api_url', [$this->adminStrategy, 'getClearCacheApiUrl'])
         ];
     }
 
     public function getFilters()
     {
         return [
-            new TwigFilter('explode', [$this, 'explode'])
+            new TwigFilter('explode', [$this, 'explode']),
+            new TwigFilter('boolToString', [$this, 'boolToString']),
+            new TwigFilter('boolToInt', [$this, 'boolToInt'])
         ];
+    }
+
+    public function boolToString($bool, $strings = ['是', '否'])
+    {
+        return $bool ? $strings[0] : $strings[1];
+    }
+
+    public function boolToInt($bool)
+    {
+        return $bool ? 1: 0;
     }
 
     public function explode($string, $delimiter = ',')

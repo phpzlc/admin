@@ -54,6 +54,12 @@
                     </ul>
                     <div class="pull-right top-nav clearfix">
                         <ul class="pull-left top-nav-ul quick-navigation clearfix">
+                            {% for top_menu in admin_top_menus() %}
+                                {{ top_menu.html | raw }}
+                            {% endfor %}
+                            {% if admin_clear_cache_api_url() is not empty %}
+                                <li> <a href="javascript:;" @click="clearCache">清除缓存</a></li>
+                            {% endif %}
                         </ul>
                         <el-dropdown class="nav pull-right top-menu" @command="handlePersonal">
                             <div class="el-dropdown-link">
@@ -99,6 +105,12 @@
                                 window.open("{{ admin_end_url() }}", '_self');
                                 brank;
                         }
+                    },
+                    clearCache(){
+                        const that = this;
+                        $.post("{{ admin_clear_cache_api_url() }}",{}, function(data) {
+                            resultPreprocess(that, data, '{{ admin_entrance_url() }}', '')
+                        });
                     }
                 }
             })

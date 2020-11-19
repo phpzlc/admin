@@ -781,7 +781,7 @@
                 try {
                     if (editor.getOpt("videoUploadService")(_this, editor).getResponseSuccess(res)) {
                         uploadVideoList.push({
-                            'url': res.url,
+                            'url': res.data.server_path,
                             'type': res.mimetype,
                             'original':res.original || ''
                         });

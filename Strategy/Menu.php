@@ -121,6 +121,14 @@ class Menu
     }
 
     /**
+     * @param Menu|null $menus
+     */
+    public function setChilds($menus)
+    {
+        $this->childs = $menus;
+    }
+
+    /**
      * @return array
      */
     public function getTags(): array

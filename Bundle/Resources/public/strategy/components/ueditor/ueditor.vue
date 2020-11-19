@@ -130,6 +130,7 @@
              * @returns {Boolean} 上传接口返回的response成功状态条件 (比如: res.code == 200)
              */
             getResponseSuccess: function (res) {
+                console.log(res);
                 return res.code === 0;
             },
             /* 指定上传接口返回的response中视频路径的字段，默认为 url
@@ -180,15 +181,15 @@
                     processData: false,
                     data: formData
                 }).done(function (res) {
-                    var res = JSON.parse(res);
+                    // var res = JSON.parse(res);
 
                     /* 上传接口返回的response成功状态条件 (比如: res.code == 200) */
-                    res.responseSuccess = res.errorCode == 0;
+                    res.responseSuccess = res.code == 0;
 
                     /* 指定上传接口返回的response中涂鸦图片路径的字段，默认为 url
                      * 如果涂鸦图片路径字段不是res的属性，可以写成 对象.属性 的方式，例如：data.url
                      */
-                    res.scrawlSrcField = 'data.pathUrl';
+                    res.scrawlSrcField = 'data.server_path';
 
                     /* 上传成功 */
                     success.call(context, res);

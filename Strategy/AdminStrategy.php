@@ -68,6 +68,11 @@ class AdminStrategy extends AbstractController
     private static $setting_pwd_url = '#';
 
     /**
+     * @var string 清除缓存API地址url
+     */
+    private static $clear_cache_api_url = '';
+
+    /**
      * @var string 管理员名称
      */
     private static $admin_name = 'admin';
@@ -96,6 +101,12 @@ class AdminStrategy extends AbstractController
      * @var Navigation[]
      */
     private static $navigations = [];
+
+    /**
+     * @var TopMenu[]
+     */
+    private static $topMenus = [];
+    
 
     public function __construct(ContainerInterface $container)
     {
@@ -309,6 +320,32 @@ class AdminStrategy extends AbstractController
         return $this;
     }
 
+    /**
+     * @return TopMenu[]
+     */
+    public static function getTopMenus(): array
+    {
+        return self::$topMenus;
+    }
+
+    /**
+     * @param TopMenu[] $topMenus
+     */
+    public function setTopMenus(array $topMenus)
+    {
+        self::$topMenus = $topMenus;
+
+        return $this;
+    }
+
+    public function addTopMenu(TopMenu $topMenu)
+    {
+        self::$topMenus[] = $topMenu;
+        
+        return $this;
+    }
+
+
     public function setAssetBaseUrl($access_base_url)
     {
         self::$assetBaseUrl = $access_base_url;
@@ -325,4 +362,21 @@ class AdminStrategy extends AbstractController
     {
         return str_replace('/index.php', '',  $this->container->get('request_stack')->getCurrentRequest()->getBaseUrl());
     }
+
+    /**
+     * @return string
+     */
+    public function getClearCacheApiUrl()
+    {
+        return self::$clear_cache_api_url;
+    }
+
+    public function setClearCacheApiUrl(string $clear_cache_api_url)
+    {
+        self::$clear_cache_api_url = $clear_cache_api_url;
+
+        return $this;
+    }
+
+
 }
