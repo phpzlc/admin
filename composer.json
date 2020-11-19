@@ -1,15 +1,18 @@
 {
     "name": "phpzlc/admin",
-    "description": "",
-    "license": "proprietary",
+    "description": "后台系统",
+    "homepage": "https://phpzlc.github.io/",
+    "license": "MIT",
     "type": "library",
     "keywords": [
         "phpzlc", "symfony", "admin"
     ],
+    "support": {
+        "email": "1044295598@qq.com"
+    },
     "authors": [
         {
-            "name": "jay_he",
-            "email": "hjjhanxing@gmail.com",
+            "name": "CJayHe",
             "role": "Developer"
         }
     ],
@@ -19,7 +22,6 @@
         }
     },
     "require": {
-        "php": "^7.2.5",
-        "phpmyadmin/sql-parser": "^5.0"
+        "symfony/framework-bundle": ">=4.4"
     }
 }
