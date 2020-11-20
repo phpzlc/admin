@@ -106,7 +106,12 @@ class AdminStrategy extends AbstractController
      * @var TopMenu[]
      */
     private static $topMenus = [];
-    
+
+    /**
+     * @var string
+     */
+    private static $hend_code;
+
 
     public function __construct(ContainerInterface $container)
     {
@@ -134,14 +139,14 @@ class AdminStrategy extends AbstractController
 
     public function getPageTag()
     {
-       return static::$page_tag;
+        return static::$page_tag;
     }
 
     public function setTitle($title)
     {
-       static::$title = $title;
+        static::$title = $title;
 
-       return $this;
+        return $this;
     }
 
     public function getTitle()
@@ -227,7 +232,7 @@ class AdminStrategy extends AbstractController
 
         return $this;
     }
-    
+
     public function getAdminRoleName()
     {
         return self::$admin_role_name;
@@ -291,7 +296,9 @@ class AdminStrategy extends AbstractController
      */
     public function setLoginLackGroundImg(string $login_lack_ground_img)
     {
-        return self::$login_lack_ground_img = $login_lack_ground_img;
+        self::$login_lack_ground_img = $login_lack_ground_img;
+
+        return $this;
     }
 
     /**
@@ -341,7 +348,7 @@ class AdminStrategy extends AbstractController
     public function addTopMenu(TopMenu $topMenu)
     {
         self::$topMenus[] = $topMenu;
-        
+
         return $this;
     }
 
@@ -378,5 +385,18 @@ class AdminStrategy extends AbstractController
         return $this;
     }
 
+    public function getHendCode() : string
+    {
+        return self::$hend_code;
+    }
 
+    /**
+     * @param $hend_code
+     */
+    public function setHendCode(string $hend_code)
+    {
+        self::$hend_code = $hend_code;
+
+        return $this;
+    }
 }
