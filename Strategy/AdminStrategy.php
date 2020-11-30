@@ -110,7 +110,7 @@ class AdminStrategy extends AbstractController
     /**
      * @var string
      */
-    private static $hend_code;
+    private static $hend_code = '';
 
 
     public function __construct(ContainerInterface $container)
