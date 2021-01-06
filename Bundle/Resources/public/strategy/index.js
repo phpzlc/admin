@@ -40,10 +40,9 @@ function splicingGetParamsToUrl(url, params) {
 /**
  * 响应处理
  *
- *
  * @param that
  * @param result
- * @param go_url
+ * @param go_url 如果是数组包起来，可以在新窗口打开
  * @param resultPreprocessFunction
  */
 function resultPreprocess(that, result, go_url, resultPreprocessFunction)
@@ -51,27 +50,36 @@ function resultPreprocess(that, result, go_url, resultPreprocessFunction)
     if(result.code != 0) {
         that.$message.error(result.msg);
     }else{
-        that.$message.success(result.msg);
-    }
-
-    if(go_url != undefined && result.code == 0){
-        if(go_url == ''){
-            window.location.reload();
-        }else {
-            window.location.href = urlPreprocess(go_url);
+        if(result.msg != '') {
+            that.$message.success(result.msg);
         }
-        return;
     }
 
+    if(resultPreprocessFunction != undefined){
+        resultPreprocessFunction(that, result);
+    }
+
+    if(go_url != undefine && result.code == 0){
+        goUrlPreprocess(go_url);return;
+    }
 
     if(result.hasOwnProperty('data')){
         if(result['data'].hasOwnProperty('go_url')){
-            window.location.href = urlPreprocess(result.data.go_url);return;
+            goUrlPreprocess(result.data.go_url);return;
         }
     }
+}
 
-    if(resultPreprocessFunction){
-        resultPreprocessFunction(that, result);
+function goUrlPreprocess(go_url) {
+    //如果是数组,则在新窗口打开, gp_url[1]等同于target="_blank
+    if(go_url instanceof Array){
+        window.open(go_url[0]);
+    }else{
+        if(go_url == ''){
+            window.location.reload();
+        }else {
+            window.location.href = go_url;
+        }
     }
 }
 
