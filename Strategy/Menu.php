@@ -16,7 +16,7 @@ class Menu
     const URL_TARGET_SELF = '_self';
 
     /**
-     * @var $title
+     * @var string
      */
     private $title;
 

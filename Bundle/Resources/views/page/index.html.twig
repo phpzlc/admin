@@ -154,10 +154,10 @@
                 </ul>
             </div>
 
-            <div id="main-content" class="page-content">
+            <div id="main-content" class="page-content clearfix">
                 <el-breadcrumb separator-class="el-icon-arrow-right" class="page-crumb">
                     {% for navigation in admin_navigations() %}
-                        <el-breadcrumb-item {% if navigation.url is not empty %} to="{ path: '/' }" {% endif %}>{{ navigation.title }}</el-breadcrumb-item>
+                        <el-breadcrumb-item><a href="{% if navigation.url is not empty %} {{ navigation.url }} {% else %} # {% endif %}">{{ navigation.title }}</a></el-breadcrumb-item>
                     {% endfor %}
                 </el-breadcrumb>
                 {% block main_content %}{% endblock %}

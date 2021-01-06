@@ -4,15 +4,15 @@
     <div class="search-page clearfix">
         <el-table :data="listData" style="width: 100%" border class="mt-10">
             {% for field, column in tableColumns %}
-                <el-table-column prop="{{ field }}" label="{{ column['field'].text }}">
+                <el-table-column prop="{{ field }}" label="{{ column['field'].text }}" width="120">
                 </el-table-column>
             {% endfor %}
-            {#            <el-table-column fixed="right" prop="date" label="操作" width="430">#}
-            {#                <template slot-scope="scope">#}
-            {#                    <el-button size="mini" @click="handleInfo(scope.$index, scope.row)">查看详情</el-button>#}
-            {#                    <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>#}
-            {#                </template>#}
-            {#            </el-table-column>#}
+            <el-table-column fixed="right" prop="date" label="操作" width="430">
+                <template slot-scope="scope">
+                    <el-button size="mini" @click="handleInfo(scope.$index, scope.row)">查看详情</el-button>
+                    <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                </template>
+            </el-table-column>
         </el-table>
         {% if isOpenPagination %}
             <el-col class="mt-20 clearfix">
@@ -35,13 +35,13 @@
                     listData: [
                         {% for data in tableData %}
                         {
-                {% for value in data %}
-                {{ value.field }}: "{{ value.value }}"{% if loop.last == false %},{% endif %}
-                {% endfor %}
-            }{% if loop.last == false %},{% endif %}
-                {% endfor %}
-            ]
-            }
+                            {% for value in data %}
+                                {{ value.field }}: "{{ value.value }}"{% if loop.last == false %},{% endif %}
+                            {% endfor %}
+                        }{% if loop.last == false %},{% endif %}
+                        {% endfor %}
+                    ]
+                }
             },
             created() {
                 // 页面初始化使用

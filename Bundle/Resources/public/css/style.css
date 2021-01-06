@@ -119,6 +119,9 @@ img {
     background-color: #fff;
     color: #313A46;
 }
+.quick-navigation .el-badge .el-badge__content.is-fixed {
+    right: 24px;
+}
 .navbar .nav {
     position: relative;
     display: block;
@@ -258,6 +261,7 @@ img {
     width: 200px;
     height: calc(100vh - 70px);
     background-color: rgba(49, 58, 70, 1);
+    overflow-y: auto;
 }
 #main-content {
     margin-top: 0px;
