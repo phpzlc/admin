@@ -42,7 +42,7 @@ function splicingGetParamsToUrl(url, params) {
  *
  * @param that
  * @param result
- * @param go_url 如果是数组包起来，可以在新窗口打开
+ * @param go_url
  * @param resultPreprocessFunction
  */
 function resultPreprocess(that, result, go_url, resultPreprocessFunction)
@@ -55,11 +55,11 @@ function resultPreprocess(that, result, go_url, resultPreprocessFunction)
         }
     }
 
-    if(resultPreprocessFunction != undefined){
+    if(resultPreprocessFunction != undefined && resultPreprocessFunction != ''){
         resultPreprocessFunction(that, result);
     }
 
-    if(go_url != undefine && result.code == 0){
+    if(go_url != undefined && result.code == 0){
         goUrlPreprocess(go_url);return;
     }
 
