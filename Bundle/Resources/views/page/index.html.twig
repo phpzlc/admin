@@ -109,7 +109,7 @@
                     clearCache(){
                         const that = this;
                         $.post("{{ admin_clear_cache_api_url() }}",{}, function(data) {
-                            resultPreprocess(that, data, '{{ admin_entrance_url() }}', '')
+                            resultPreprocess(that, data, '')
                         });
                     }
                 }
