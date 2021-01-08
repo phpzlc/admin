@@ -106,6 +106,11 @@ class AdminStrategy extends AbstractController
      * @var TopMenu[]
      */
     private static $topMenus = [];
+
+    /**
+     * @var string
+     */
+    private static $hend_code = '';
     
 
     public function __construct(ContainerInterface $container)
@@ -378,5 +383,18 @@ class AdminStrategy extends AbstractController
         return $this;
     }
 
+    public function getHendCode() : string
+    {
+        return self::$hend_code;
+    }
 
+    /**
+     * @param $hend_code
+     */
+    public function setHendCode(string $hend_code)
+    {
+        self::$hend_code = $hend_code;
+
+        return $this;
+    }
 }
