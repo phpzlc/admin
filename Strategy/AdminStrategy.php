@@ -296,7 +296,9 @@ class AdminStrategy extends AbstractController
      */
     public function setLoginLackGroundImg(string $login_lack_ground_img)
     {
-        return self::$login_lack_ground_img = $login_lack_ground_img;
+        self::$login_lack_ground_img = $login_lack_ground_img;
+
+        return $this;
     }
 
     /**
