@@ -110,8 +110,10 @@
                         const that = this;
                         $.post("{{ admin_clear_cache_api_url() }}",{}, function(data) {
                             resultPreprocess(that, data, '')
+                        }).fail(function(response) {
+                            window.location.reload();
                         });
-                    }
+                    },
                 }
             })
         </script>
