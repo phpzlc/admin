@@ -111,7 +111,11 @@
                         $.post("{{ admin_clear_cache_api_url() }}",{}, function(data) {
                             resultPreprocess(that, data, '{{ admin_entrance_url() }}', '')
                         });
-                    }
+                    },
+
+                    {% for top_menu in admin_top_menus() %}
+                    {{ top_menu.function | raw }}
+                    {% endfor %}
                 }
             })
         </script>
