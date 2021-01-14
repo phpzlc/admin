@@ -35,13 +35,13 @@
                     listData: [
                         {% for data in tableData %}
                         {
-                            {% for value in data %}
-                                {{ value.field }}: "{{ value.value }}"{% if loop.last == false %},{% endif %}
-                            {% endfor %}
-                        }{% if loop.last == false %},{% endif %}
-                        {% endfor %}
-                    ]
-                }
+                {% for value in data %}
+                {{ value.field }}: "{{ value.value }}"{% if loop.last == false %},{% endif %}
+                {% endfor %}
+            }{% if loop.last == false %},{% endif %}
+                {% endfor %}
+            ]
+            }
             },
             created() {
                 // 页面初始化使用
