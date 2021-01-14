@@ -44,7 +44,9 @@ class StrategyExtension extends AbstractExtension
             new TwigFunction('admin_login_lack_ground_img', [$this->adminStrategy, 'getLoginLackGroundImg']),
             new TwigFunction('admin_navigations', [$this->adminStrategy, 'getNavigations']),
             new TwigFunction('admin_asset', [$this, 'asset']),
-            new TwigFunction('admin_clear_cache_api_url', [$this->adminStrategy, 'getClearCacheApiUrl'])
+            new TwigFunction('admin_clear_cache_api_url', [$this->adminStrategy, 'getClearCacheApiUrl']),
+            new TwigFunction('admin_hend_code', [$this->adminStrategy, 'getHendCode']),
+            new TwigFunction('admin_hend_code', [$this->adminStrategy, 'getHendCode'])
         ];
     }
 
