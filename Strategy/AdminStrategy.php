@@ -50,7 +50,7 @@ class AdminStrategy extends AbstractController
     /**
      * @var string 后台logo
      */
-    private static $logo = 'bundles/phpzlcadmin/images/logo.png';
+    private static $logo;
 
     /**
      * @var string 后台入口url
@@ -95,7 +95,7 @@ class AdminStrategy extends AbstractController
     /**
      * @var string 登陆页面背景图片
      */
-    private static $login_lack_ground_img = 'bundles/phpzlcadmin/images/login_logo.png';
+    private static $login_lack_ground_img;
 
     /**
      * @var Navigation[]
@@ -175,6 +175,10 @@ class AdminStrategy extends AbstractController
 
     public function getLogo()
     {
+        if(empty(static::$logo)){
+            return $this->getAssetBaseUrl() . '/bundles/phpzlcadmin/images/logo.png';
+        }
+
         return static::$logo;
     }
 
@@ -287,6 +291,10 @@ class AdminStrategy extends AbstractController
      */
     public function getLoginLackGroundImg(): string
     {
+        if(empty(self::$login_lack_ground_img)){
+            return $this->getAssetBaseUrl(). '/bundles/phpzlcadmin/images/login_logo.png';
+        }
+
         return self::$login_lack_ground_img;
     }
 
@@ -396,6 +404,28 @@ class AdminStrategy extends AbstractController
     public function setHendCode(string $hend_code)
     {
         self::$hend_code = $hend_code;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAdminAvatar(): string
+    {
+        if(empty(self::$admin_avatar)){
+            return self::$assetBaseUrl . '/bundles/phpzlcadmin/images/admin_avatar.png';
+        }
+
+        return self::$admin_avatar;
+    }
+
+    /**
+     * @param string $admin_avatar
+     */
+    public function setAdminAvatar(string $admin_avatar)
+    {
+        self::$admin_avatar = $admin_avatar;
 
         return $this;
     }

@@ -45,6 +45,7 @@ class StrategyExtension extends AbstractExtension
             new TwigFunction('admin_navigations', [$this->adminStrategy, 'getNavigations']),
             new TwigFunction('admin_asset', [$this, 'asset']),
             new TwigFunction('admin_clear_cache_api_url', [$this->adminStrategy, 'getClearCacheApiUrl']),
+            new TwigFunction('admin_hend_code', [$this->adminStrategy, 'getHendCode']),
             new TwigFunction('admin_hend_code', [$this->adminStrategy, 'getHendCode'])
         ];
     }
