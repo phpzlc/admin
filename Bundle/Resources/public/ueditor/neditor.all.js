@@ -19449,6 +19449,7 @@ UE.plugins["autofloat"] = function() {
       origalFloat = domUtils.getComputedStyle(toolbarBox, "position"),
       origalLeft = domUtils.getComputedStyle(toolbarBox, "left");
     toolbarBox.style.width = toolbarBox.offsetWidth + "px";
+    toolbarBox.style.height = toolbarBox.getBoundingClientRect().height + "px";
     toolbarBox.style.zIndex = me.options.zIndex * 1 + 1;
     toolbarBox.parentNode.insertBefore(placeHolder, toolbarBox);
     if (LteIE6 || (quirks && browser.ie)) {
@@ -19524,7 +19525,14 @@ UE.plugins["autofloat"] = function() {
       toolbarBox = me.ui.getDom("toolbarbox");
       orgTop = getPosition(toolbarBox).top;
       bakCssText = toolbarBox.style.cssText;
-      placeHolder.style.height = me.ui.getDom("iframeholder").offsetHeight + "px";
+        setTimeout(function() {
+            var height = me.ui.getDom("iframeholder").offsetHeight + toolbarBox.getBoundingClientRect().height;
+            if (!height) {
+                height = 640;
+            }
+            me.ui.getDom("iframeholder").style.height = height + "px";
+            placeHolder.style.height = height + "px";
+        }, 1000);
       if (LteIE6) {
         fixIE6FixedPos();
       }
@@ -28468,7 +28476,7 @@ UE.ui = baidu.editor.ui = {};
       popEl.className +=
         " " + ANCHOR_CLASSES[(sideUp ? 1 : 0) * 2 + (sideLeft ? 1 : 0)];
       if (this.editor) {
-        popEl.style.zIndex = this.editor.container.style.zIndex * 1 + 10;
+        popEl.style.zIndex = this.editor.container.style.zIndex * 1 + 1000;
         baidu.editor.ui.uiUtils.getFixedLayer().style.zIndex =
           popEl.style.zIndex - 1;
       }
@@ -30460,7 +30468,7 @@ UE.ui = baidu.editor.ui = {};
         //要高过编辑器的zindxe
         this.editor.container.style.zIndex &&
           (this.getDom().style.zIndex =
-            this.editor.container.style.zIndex * 1 + 10);
+            this.editor.container.style.zIndex * 1 + 1000);
         this._hidden = false;
         this.fireEvent("show");
         baidu.editor.ui.uiUtils.getFixedLayer().style.zIndex =
