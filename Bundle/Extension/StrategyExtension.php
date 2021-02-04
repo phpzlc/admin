@@ -36,6 +36,7 @@ class StrategyExtension extends AbstractExtension
             new TwigFunction('admin_setting_pwd_url', [$this->adminStrategy, 'getSettingPwdUrl']),
             new TwigFunction('admin_name', [$this->adminStrategy, 'getAdminName']),
             new TwigFunction('admin_role_name', [$this->adminStrategy, 'getAdminRoleName']),
+            new TwigFunction('admin_avatar', [$this->adminStrategy, 'getAdminAvatar']),
             new TwigFunction('admin_url_anchor', [$this->adminStrategy, 'getUrlAnchor']),
             new TwigFunction('admin_env', [$this->adminStrategy, 'getAdminEnv']),
             new TwigFunction('admin_menus', [$this->adminStrategy, 'getMenus']),
