@@ -71,14 +71,15 @@ function resultPreprocess(that, result, go_url, resultPreprocessFunction)
 }
 
 function goUrlPreprocess(go_url) {
+
     //如果是数组,则在新窗口打开, gp_url[1]等同于target="_blank
     if(go_url instanceof Array){
-        window.open(go_url[0]);
+        window.open(urlPreprocess(go_url[0]));
     }else{
         if(go_url == ''){
             window.location.reload();
         }else {
-            window.location.href = go_url;
+            window.location.href =  urlPreprocess(go_url);
         }
     }
 }
