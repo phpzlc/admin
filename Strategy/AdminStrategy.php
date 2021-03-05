@@ -6,7 +6,6 @@
 
 namespace PHPZlc\Admin\Strategy;
 
-use PHPZlc\Admin\Strategy\Menu;
 use Psr\Container\ContainerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -78,6 +77,11 @@ class AdminStrategy extends AbstractController
     private static $admin_name = 'admin';
 
     /**
+     * @var string
+     */
+    private static $admin_avatar;
+
+    /**
      * @var static 管理员角色名称
      */
     private static $admin_role_name = '超级管理员';
@@ -111,7 +115,7 @@ class AdminStrategy extends AbstractController
      * @var string
      */
     private static $hend_code = '';
-    
+
 
     public function __construct(ContainerInterface $container)
     {
@@ -139,14 +143,14 @@ class AdminStrategy extends AbstractController
 
     public function getPageTag()
     {
-       return static::$page_tag;
+        return static::$page_tag;
     }
 
     public function setTitle($title)
     {
-       static::$title = $title;
+        static::$title = $title;
 
-       return $this;
+        return $this;
     }
 
     public function getTitle()
@@ -176,7 +180,11 @@ class AdminStrategy extends AbstractController
     public function getLogo()
     {
         if(empty(static::$logo)){
-            return $this->getAssetBaseUrl() . '/bundles/phpzlcadmin/images/logo.png';
+            if(empty($this->getAssetBaseUrl())){
+                return 'bundles/phpzlcadmin/images/logo.png';
+            }else{
+                return $this->getAssetBaseUrl() . '/bundles/phpzlcadmin/images/logo.png';
+            }
         }
 
         return static::$logo;
@@ -236,7 +244,7 @@ class AdminStrategy extends AbstractController
 
         return $this;
     }
-    
+
     public function getAdminRoleName()
     {
         return self::$admin_role_name;
@@ -292,7 +300,11 @@ class AdminStrategy extends AbstractController
     public function getLoginLackGroundImg(): string
     {
         if(empty(self::$login_lack_ground_img)){
-            return $this->getAssetBaseUrl(). '/bundles/phpzlcadmin/images/login_logo.png';
+            if(empty($this->getAssetBaseUrl())){
+                return 'bundles/phpzlcadmin/images/login_logo.png';
+            }else {
+                return $this->getAssetBaseUrl() . '/bundles/phpzlcadmin/images/login_logo.png';
+            }
         }
 
         return self::$login_lack_ground_img;
@@ -356,7 +368,7 @@ class AdminStrategy extends AbstractController
     public function addTopMenu(TopMenu $topMenu)
     {
         self::$topMenus[] = $topMenu;
-        
+
         return $this;
     }
 
@@ -414,7 +426,11 @@ class AdminStrategy extends AbstractController
     public function getAdminAvatar(): string
     {
         if(empty(self::$admin_avatar)){
-            return self::$assetBaseUrl . '/bundles/phpzlcadmin/images/admin_avatar.png';
+            if(empty($this->getAssetBaseUrl())){
+                return 'bundles/phpzlcadmin/images/admin_avatar.png';
+            }else {
+                return $this->getAssetBaseUrl() . '/bundles/phpzlcadmin/images/admin_avatar.png';
+            }
         }
 
         return self::$admin_avatar;
