@@ -1,2 +1,5 @@
  # 安装
-    composer require phpzlc/admin
+ 
+```shell
+composer require phpzlc/admin
+``` 
