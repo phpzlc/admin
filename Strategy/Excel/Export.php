@@ -11,6 +11,7 @@ use PhpOffice\PhpSpreadsheet\Cell\DataType;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+use PHPZlc\PHPZlc\Abnormal\Errors;
 
 class Export
 {
@@ -39,7 +40,7 @@ class Export
             header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         }
 
-        header('Content-Disposition: attachment; filename="' . $this->exFileName($title) . date('YmdHis') . '.xls"');
+        header('Content-Disposition: attachment; filename="' . $this->exFileName($title) . date('YmdHis') . '.' . strtolower($format) .'"');
         header('Cache-Control: max-age=0');
 
         $objWriter = IOFactory::createWriter($spreadsheet, $format);
@@ -75,7 +76,7 @@ class Export
             foreach ($data as $key => $datum){
                 if ($key > 0) {
                     $spreadsheet->createSheet();
-                    $sheet = $spreadsheet->getActiveSheet();
+                    $sheet = $spreadsheet->setActiveSheetIndex($key);
                 }
 
                 $this->setHenderValue($sheet, $head, $is_need);
