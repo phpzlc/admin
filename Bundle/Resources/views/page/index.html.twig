@@ -77,9 +77,9 @@
                             </el-dropdown-menu>
                         </el-dropdown>
                         {% if admin_env() == 'dev' %}
-                            <p class="testing-environment" style="right: 0">开发环境</p>
+                            <p class="testing-environment" style="right: 0">开发</p>
                         {% elseif admin_env() == 'beta' %}
-                            <p class="testing-environment" style="right: 0">测试环境</p>
+                            <p class="testing-environment" style="right: 0">内测</p>
                         {% elseif admin_env() == 'demo' %}
                             <p class="testing-environment" style="right: 0">样品</p>
                         {% elseif admin_env() == 'prod' %}
