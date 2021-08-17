@@ -4,4 +4,4 @@
 
 ## 使用文档
 
-[使用文档](https://phpzlc.github.io/doc/module/admin)
+[使用文档](https://phpzlc.com/doc/module/admin)
