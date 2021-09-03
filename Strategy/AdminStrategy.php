@@ -81,7 +81,7 @@ class AdminStrategy extends AbstractController
     /**
      * @var string
      */
-    private static $admin_avatar;
+    private static $admin_avatar = '/bundles/phpzlcadmin/images/admin_avatar.png';
 
     /**
      * @var static 管理员角色名称
@@ -101,7 +101,7 @@ class AdminStrategy extends AbstractController
     /**
      * @var string 登陆页面背景图片
      */
-    private static $login_lack_ground_im = '/bundles/phpzlcadmin/images/login_logo.png';
+    private static $login_lack_ground_img = '/bundles/phpzlcadmin/images/login_logo.png';
 
     /**
      * @var Navigation[]
@@ -170,7 +170,11 @@ class AdminStrategy extends AbstractController
 
     public function getFaviconIco()
     {
-        return static::$favicon_ico;
+        if(substr(static::$favicon_ico, 0, 4) == 'http'){
+            return static::$favicon_ico;
+        }else{
+            return $this->getAssetBaseUrl() . static::$favicon_ico;
+        }
     }
 
     public function setLogo($logo)
@@ -420,15 +424,11 @@ class AdminStrategy extends AbstractController
      */
     public function getAdminAvatar(): string
     {
-        if(empty(self::$admin_avatar)){
-            if(empty($this->getAssetBaseUrl())){
-                return 'bundles/phpzlcadmin/images/admin_avatar.png';
-            }else {
-                return $this->getAssetBaseUrl() . '/bundles/phpzlcadmin/images/admin_avatar.png';
-            }
+        if(substr(static::$admin_avatar, 0, 4) == 'http'){
+            return static::$admin_avatar;
+        }else{
+            return $this->getAssetBaseUrl() . static::$admin_avatar;
         }
-
-        return self::$admin_avatar;
     }
 
     /**
