@@ -27,6 +27,8 @@ class AdminStrategy extends AbstractController
     const menu_model_simple = 2;
 
     /**
+     * 资源基础url
+     *
      * @var string
      */
     private static $assetBaseUrl;
@@ -49,7 +51,7 @@ class AdminStrategy extends AbstractController
     /**
      * @var string 后台logo
      */
-    private static $logo;
+    private static $logo = '/bundles/phpzlcadmin/images/logo.png';
 
     /**
      * @var string 后台入口url
@@ -99,7 +101,7 @@ class AdminStrategy extends AbstractController
     /**
      * @var string 登陆页面背景图片
      */
-    private static $login_lack_ground_img;
+    private static $login_lack_ground_im = '/bundles/phpzlcadmin/images/login_logo.png';
 
     /**
      * @var Navigation[]
@@ -120,6 +122,7 @@ class AdminStrategy extends AbstractController
     public function __construct(ContainerInterface $container)
     {
         $this->setContainer($container);
+        self::$assetBaseUrl = $this->getBaseUrl();
     }
 
     public function setUrlAnchor()
@@ -179,15 +182,11 @@ class AdminStrategy extends AbstractController
 
     public function getLogo()
     {
-        if(empty(static::$logo)){
-            if(empty($this->getAssetBaseUrl())){
-                return 'bundles/phpzlcadmin/images/logo.png';
-            }else{
-                return $this->getAssetBaseUrl() . '/bundles/phpzlcadmin/images/logo.png';
-            }
+        if(substr(static::$logo, 0, 4) == 'http'){
+            return static::$logo;
+        }else{
+            return $this->getAssetBaseUrl() . static::$logo;
         }
-
-        return static::$logo;
     }
 
     public function setEndUrl($end_url)
@@ -299,15 +298,11 @@ class AdminStrategy extends AbstractController
      */
     public function getLoginLackGroundImg(): string
     {
-        if(empty(self::$login_lack_ground_img)){
-            if(empty($this->getAssetBaseUrl())){
-                return 'bundles/phpzlcadmin/images/login_logo.png';
-            }else {
-                return $this->getAssetBaseUrl() . '/bundles/phpzlcadmin/images/login_logo.png';
-            }
+        if(substr(static::$login_lack_ground_img, 0, 4) == 'http'){
+            return static::$login_lack_ground_img;
+        }else{
+            return $this->getAssetBaseUrl() . static::$login_lack_ground_img;
         }
-
-        return self::$login_lack_ground_img;
     }
 
     /**
