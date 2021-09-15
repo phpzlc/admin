@@ -386,7 +386,11 @@ class AdminStrategy extends AbstractController
 
     public function getBaseUrl()
     {
-        return str_replace('/index.php', '',  $this->container->get('request_stack')->getCurrentRequest()->getBaseUrl());
+        if($this->has('request_stack') && !empty($this->get('request_stack')->getCurrentRequest())){
+            return str_replace('/index.php', '',  $this->get('request_stack')->getCurrentRequest()->getBaseUrl());
+        }
+
+        return '';
     }
 
     /**
