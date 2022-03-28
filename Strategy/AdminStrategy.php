@@ -134,7 +134,11 @@ class AdminStrategy extends AbstractController
 
     public function getUrlAnchor()
     {
-        return $this->get('session')->get(self::URL_ANCHOR_POINT);
+        $url = $this->get('session')->get(self::URL_ANCHOR_POINT);
+        if(empty($url)){
+            $url = $this->getEntranceUrl();
+        }
+        return $url;
     }
 
     public function setPageTag($tag)
