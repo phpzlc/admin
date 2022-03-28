@@ -54,19 +54,19 @@ function resultPreprocess(that, result, go_url, resultPreprocessFunction)
             that.$message.success(result.msg);
         }
     }
-
-    if(resultPreprocessFunction != undefined && resultPreprocessFunction != ''){
-        resultPreprocessFunction(that, result);
+    
+    if(result.hasOwnProperty('data')){
+        if(result['data'].hasOwnProperty('go_url')){
+            goUrlPreprocess(result.data.go_url);return;
+        }
     }
 
     if(go_url != undefined && result.code == 0){
         goUrlPreprocess(go_url);return;
     }
 
-    if(result.hasOwnProperty('data')){
-        if(result['data'].hasOwnProperty('go_url')){
-            goUrlPreprocess(result.data.go_url);return;
-        }
+    if(resultPreprocessFunction != undefined && resultPreprocessFunction != ''){
+        resultPreprocessFunction(that, result);
     }
 }
 
