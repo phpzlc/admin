@@ -95,3 +95,16 @@ function urlPreprocess(url) {
     var reg = new RegExp("amp;","g");
     return url.replace(reg, '');
 }
+
+/**
+ * 处理多行文本
+ *
+ * 定义使用方式 https://www.cnblogs.com/starlet/archive/2010/05/24/1742572.html
+ *
+ * @returns {String}
+ */
+Function.prototype.getMultiLine = function() {
+    var lines = new String(this);
+    lines = lines.substring(lines.indexOf("/*") + 3, lines.lastIndexOf("*/"));
+    return lines;
+}
