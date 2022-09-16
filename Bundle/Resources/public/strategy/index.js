@@ -97,7 +97,7 @@ function urlPreprocess(url) {
 }
 
 /**
- * 处理多行文本
+ * 得到多行文本
  *
  * 定义使用方式 https://www.cnblogs.com/starlet/archive/2010/05/24/1742572.html
  *
