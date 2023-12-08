@@ -25,9 +25,9 @@ function urlParamWrite(url, param, value) {
         }
     }else {
         if(url.indexOf('?'+ param) === -1){
-            return url.replace(eval('/([?&x22]+' + param + '=)([^&]*)/gi'), '&' + param + '=' + value);
+            return url.replace(eval('/([?&]+' + param + '=)([^&]*)/gi'), '&' + param + '=' + value);
         }else{
-            return url.replace(eval('/([?&x22]+' + param + '=)([^&]*)/gi'), '?' + param + '=' + value);
+            return url.replace(eval('/([?&]+' + param + '=)([^&]*)/gi'), '?' + param + '=' + value);
         }
     }
 }
