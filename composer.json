@@ -22,7 +22,7 @@
         }
     },
     "require": {
-        "symfony/framework-bundle": ">=5.4",
-        "phpoffice/phpspreadsheet": "1.18.*"
+        "symfony/framework-bundle": "7.0.*",
+        "phpoffice/phpspreadsheet": "2.0.*"
     }
 }
