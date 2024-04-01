@@ -127,14 +127,14 @@ class AdminStrategy extends AbstractController
 
     public function setUrlAnchor()
     {
-        $this->get('session')->set(self::URL_ANCHOR_POINT, $this->get('request_stack')->getCurrentRequest()->getUri());
+        $this->container->get('request_stack')->getCurrentRequest()->getSession()->set(self::URL_ANCHOR_POINT, $this->container->get('request_stack')->getCurrentRequest()->getUri());
 
         return $this;
     }
 
     public function getUrlAnchor()
     {
-        $url = $this->get('session')->get(self::URL_ANCHOR_POINT);
+        $url =  $this->container->get('request_stack')->getCurrentRequest()->getSession()->get(self::URL_ANCHOR_POINT);
         if(empty($url)){
             $url = $this->getEntranceUrl();
         }
@@ -390,8 +390,8 @@ class AdminStrategy extends AbstractController
 
     public function getBaseUrl()
     {
-        if($this->has('request_stack') && !empty($this->get('request_stack')->getCurrentRequest())){
-            return str_replace('/index.php', '',  $this->get('request_stack')->getCurrentRequest()->getBaseUrl());
+        if($this->container->has('request_stack') && !empty($this->container->get('request_stack')->getCurrentRequest())){
+            return str_replace('/index.php', '',  $this->container->get('request_stack')->getCurrentRequest()->getBaseUrl());
         }
 
         return '';
