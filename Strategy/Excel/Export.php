@@ -62,8 +62,8 @@ class Export
      */
     public function export($title, $head, $data, $is_need = false, $mergeCells = array(), $format = 'Xls')
     {
-        set_time_limit(0);
-        ini_set("memory_limit", "1024M"); // 设置php可使用内存
+        ini_set("max_execution_time", "0");
+        ini_set('memory_limit', '-1');
 
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
